@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: obywatel-auth
+  cloud:
+    config:
+      uri: http://localhost:8888
