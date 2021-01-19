@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Titan+One');
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@500&family=Mitr:wght@500&display=swap');
+
+$container-width: 100%;
+$color-main-1: #70afd9; //turkusowy
+$color-main-2: #777777; //szary ciemny
+$color-main-3: #ffffff; //biały
+$color-main-4: #b3ffb3; //limonkowy
+$color-main-5: #f5f5f5; //biały złamany szarym
+$color-secondary-1: #0066ff; //niebieski
+$color-secondary-2: #d3d3d3; // szary jasny
+$color-secondary-3: #6c757d; // szary button
+$color-header-1: #404040; // ciemny szary
+$color-header-2: #000; //czarny
+
+$color-brighter-1: rgba(255, 255, 255, 0.5);
+$color-brighter-2: rgba(255, 255, 255, 0.8);
+
+$color-darker-1: rgba(0, 0, 0, 0.5);
+$color-darker-2: rgba(0, 0, 0, 0.8);
+
+$background-color-1: #202020; // dark
+$background-color-2: #FFFAFA; //snow
+
+$font-header: 'Titan One';
+$font-h: 'Mitr', sans-serif;
+$font-p: 'Baloo Chettan 2', cursive;
+
+$breakpoint-lg: 1200px;
+$breakpoint-md: 900px;
+$breakpoint-sm: 600px;
+$breakpoint-xs: 400px;
+
+$breakpoint-min-lg: 1201px;
+$breakpoint-min-md: 901px;
+$breakpoint-min-sm: 601px;
+$breakpoint-min-xs: 401px;
