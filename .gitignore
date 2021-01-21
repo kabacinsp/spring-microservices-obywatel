@@ -1,0 +1,9 @@
+*.jar
+*.zip
+**zip**
+
+# IntelliJ project files
+.idea
+*.iml
+out
+gen
