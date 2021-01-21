@@ -1,0 +1,6 @@
+*.jar
+*.zip
+**zip**
+
+# Ignore folders
+.idea/
