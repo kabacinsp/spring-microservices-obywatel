@@ -34,3 +34,16 @@ export function signup(signupRequest) {
         body: JSON.stringify(signupRequest)
     });
 }
+
+export function easy() {
+  return request({
+       url: API_BASE_URL + "/auth/easy",
+       method: 'GET'
+   });
+}
+
+export function getAllUsers() {
+
+    const response = fetch('/auth/users');
+    return response.json();
+}

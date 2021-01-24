@@ -1,0 +1,14 @@
+@import '../components/styles/global.scss';
+
+body {
+  background-color: $background-color-1;
+}
+
+.login_container {
+  max-width: 600px;
+  margin: auto;
+  margin-top: 2rem;
+  background-color: $background-color-2;
+  padding: 3rem;
+  border-radius: 2rem;
+}
