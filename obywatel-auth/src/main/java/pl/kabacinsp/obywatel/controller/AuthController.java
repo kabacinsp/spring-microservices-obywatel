@@ -1,5 +1,6 @@
 package pl.kabacinsp.obywatel.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +18,14 @@ import pl.kabacinsp.obywatel.payload.LoginRequest;
 import pl.kabacinsp.obywatel.payload.SignUpRequest;
 import pl.kabacinsp.obywatel.repository.UserRepository;
 import pl.kabacinsp.obywatel.security.TokenProvider;
+import pl.kabacinsp.obywatel.service.UserService;
 
 import javax.validation.Valid;
+import javax.ws.rs.core.Response;
 import java.net.URI;
+import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -32,6 +37,8 @@ public class AuthController {
     @Autowired private PasswordEncoder passwordEncoder;
 
     @Autowired private TokenProvider tokenProvider;
+
+    @Autowired private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -70,5 +77,17 @@ public class AuthController {
 
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "User registered successfully@"));
+    }
+
+    @GetMapping("users")
+    public ResponseEntity<?> listUsers() {
+        log.info("UsersController:  list users");
+        List<UserDTO> resource = userService.getUsers();
+        return ResponseEntity.ok(resource);
+    }
+
+    @GetMapping("/easy")
+    public String anyMethod() throws Exception {
+        return "Fajnie było";
     }
 }
