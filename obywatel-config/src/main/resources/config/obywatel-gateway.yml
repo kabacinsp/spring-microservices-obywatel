@@ -1,8 +1,14 @@
 server:
   port: 8080
 
-zuul:
-  ignoredServices: '*'
-  host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: obywatel-auth
+          uri: http://localhost:8081
+          predicates:
+            - Path=/auth/**
