@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import styles from './login.module.scss'
-import { login } from '../../components/utils/APIUtils.js';
+import { login } from '../../utils/APIUtils.js';
 
 class LoginForm extends Component {
 

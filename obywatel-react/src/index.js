@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.module.scss';
+import Layout from './components/layouts/mainLayout/layout';
+import NavBar from './components/layouts/navbar/navbar';
 import App from './App';
-import EasyForm from './auth/easy';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+  <Router>
+    <Layout>
+      <NavBar />
+      <App />
+    </Layout>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
