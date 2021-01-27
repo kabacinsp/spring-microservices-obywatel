@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Layout from './components/layouts/mainLayout/layout';
-import NavBar from './components/layouts/navbar/navbar';
 import App from './App';
+import Easy from './auth/easy';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
   <Router>
     <Layout>
-      <NavBar />
       <App />
+      <Easy />
     </Layout>
     </Router>
   </React.StrictMode>,
