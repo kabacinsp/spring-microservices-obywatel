@@ -1,11 +1,12 @@
 import { React, Component } from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 class AppHeader extends Component {
   render() {
       return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand href="#home">Obywatel</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
@@ -26,7 +27,10 @@ class AppHeader extends Component {
                 <NavDropdown.Item onClick={this.props.onLogout}>Logout</NavDropdown.Item>
               </NavDropdown>
             ): (
-              <Nav.Link to="/login">Login</Nav.Link>
+              <Nav className="mr-auto">
+                <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                <Nav.Link as={Link} to="/signup">Signup</Nav.Link>
+              </Nav>
             )}
           </Nav>
         </Navbar.Collapse>

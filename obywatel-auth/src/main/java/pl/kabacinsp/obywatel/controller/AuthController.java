@@ -2,7 +2,6 @@ package pl.kabacinsp.obywatel.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +20,6 @@ import pl.kabacinsp.obywatel.security.TokenProvider;
 import pl.kabacinsp.obywatel.service.UserService;
 
 import javax.validation.Valid;
-import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 
@@ -30,15 +28,20 @@ import java.util.List;
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired private AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-    @Autowired private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-    @Autowired private PasswordEncoder passwordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    @Autowired private TokenProvider tokenProvider;
+    @Autowired
+    private TokenProvider tokenProvider;
 
-    @Autowired private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {

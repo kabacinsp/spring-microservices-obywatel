@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import styles from './login.module.scss'
-import { login } from '../../utils/APIUtils.js';
+import styles from './Signup.module.scss'
+import { signup } from '../../components/utils/APIUtils.js';
 
-class LoginForm extends Component {
+class SignupForm extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            name: '',
+            surname: '',
             email: '',
             password: ''
         };
@@ -26,13 +28,14 @@ class LoginForm extends Component {
     }
 
     handleSubmit(event) {
+
       event.preventDefault();
+      alert('A name was submitted: ' + this.state.name);
 
-      const loginRequest = Object.assign({}, this.state);
+      const signupRequest = Object.assign({}, this.state);
 
-      login(loginRequest)
+      signup(signupRequest)
        .then(response => {
-         alert("You're successfully logged!");
          this.props.history.push("/");});
     }
 
@@ -40,6 +43,18 @@ class LoginForm extends Component {
         return (
             <div className={styles.login_container}>
               <Form onSubmit={this.handleSubmit}>
+                <Form.Group controlId="formBasicName">
+                  <Form.Label>Name</Form.Label>
+                  <Form.Control placeholder="Enter your name" name="name"
+                                onChange={this.handleInputChange}
+                                value={this.state.name} required/>
+                </Form.Group>
+                <Form.Group controlId="formBasicSurname">
+                  <Form.Label>Surname</Form.Label>
+                  <Form.Control placeholder="Enter your surname" name="surname"
+                                onChange={this.handleInputChange}
+                                value={this.state.surname} required/>
+                </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
                   <Form.Control type="email" placeholder="Enter email" name="email"
@@ -62,4 +77,4 @@ class LoginForm extends Component {
     }
   }
 
-  export default LoginForm
+  export default SignupForm
