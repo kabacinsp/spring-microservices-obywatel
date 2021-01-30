@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Layout from './components/layouts/mainLayout/layout';
 import App from './App';
-import Easy from './auth/easy';
 import reportWebVitals from './reportWebVitals';
 import { HashRouter as Router } from 'react-router-dom';
 
@@ -11,7 +10,6 @@ ReactDOM.render(
   <Router>
     <Layout>
       <App />
-      <Easy />
     </Layout>
     </Router>
   </React.StrictMode>,
