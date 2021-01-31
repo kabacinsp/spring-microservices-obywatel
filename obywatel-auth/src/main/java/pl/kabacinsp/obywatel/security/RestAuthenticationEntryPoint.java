@@ -1,4 +1,4 @@
-package org.obywatel.auth.security;
+package pl.kabacinsp.obywatel.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

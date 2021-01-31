@@ -1,4 +1,4 @@
-package org.obywatel.auth.config;
+package pl.kabacinsp.obywatel.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -17,6 +17,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
         .allowedHeaders("*")
         .allowCredentials(true)
+        .allowedOrigins("http://localhost:8080")
         .maxAge(MAX_AGE_SECS);
   }
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.kabacinsp.obywatel.model.UserDTO;
 import pl.kabacinsp.obywatel.payload.ApiResponse;
-import pl.kabacinsp.obywatel.payload.AuthResponse;
 import pl.kabacinsp.obywatel.payload.LoginRequest;
 import pl.kabacinsp.obywatel.payload.SignUpRequest;
 import pl.kabacinsp.obywatel.repository.UserRepository;
@@ -51,8 +50,8 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String token = tokenProvider.createToken(authentication);
-        return ResponseEntity.ok(new AuthResponse(token));
+//        String token = tokenProvider.createToken(authentication);
+        return ResponseEntity.ok("Fine");
     }
 
     @PostMapping("/signup")
