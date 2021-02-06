@@ -1,5 +1,6 @@
 package pl.kabacinsp.obywatel.model;
 
+import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import net.minidev.json.annotate.JsonIgnore;
@@ -33,4 +34,10 @@ public class UserDTO {
 
     @Column(nullable = false)
     private Boolean emailVerification = false;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
+    private String providerId;
 }

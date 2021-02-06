@@ -2,6 +2,7 @@ package pl.kabacinsp.obywatel.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +26,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200"})
 public class AuthController {
 
     @Autowired
@@ -51,7 +53,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
 //        String token = tokenProvider.createToken(authentication);
-        return ResponseEntity.ok("Fine");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PostMapping("/signup")

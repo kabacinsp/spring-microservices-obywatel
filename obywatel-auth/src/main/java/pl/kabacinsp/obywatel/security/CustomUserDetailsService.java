@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.kabacinsp.obywatel.exception.ResourceNotFoundException;
 import pl.kabacinsp.obywatel.model.UserDTO;
 import pl.kabacinsp.obywatel.repository.UserRepository;
 
@@ -30,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Transactional
     public UserDetails loadUserById(Long id) throws Exception {
         UserDTO user = userRepository.findById(id).orElseThrow(
-                Exception::new
+                () -> new ResourceNotFoundException("User", "id", id)
         );
 
         return UserPrincipal.create(user);
