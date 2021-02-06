@@ -10,7 +10,7 @@ class EasyForm extends Component {
   state = {};
 
    componentDidMount() {
-       setInterval(this.easy, 250);
+       this.easy();
    }
 
    easy = () => {

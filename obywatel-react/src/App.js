@@ -2,6 +2,7 @@ import { React, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import LoginForm from './auth/login/LoginForm'
 import Login from './auth/login/Login'
+import LoginComponent from './auth/login/LoginComponent'
 import Easy from './auth/easy';
 import SignupForm from './auth/signup/Signup'
 import NavBar from './components/layouts/navbar/navbar';
@@ -43,10 +44,11 @@ class App extends Component {
     return (
         <div>
           <Route exact path="/" render={(props) => <Login />}>
-            <Redirect to="/newLogin" />
+            <Redirect to="/home" />
           </Route>
           <Switch>
             <Route exact path="/home" component={Easy}></Route>
+          <Route path="/basicauth" exact component={LoginComponent} />
             <Route path="/login"
               render={(props) => <LoginForm authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/signup"
