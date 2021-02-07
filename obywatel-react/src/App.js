@@ -1,12 +1,11 @@
 import { React, Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import LoginForm from './auth/login/LoginForm'
 import Login from './auth/login/Login'
-import LoginComponent from './auth/login/LoginComponent'
 import Easy from './auth/easy';
 import SignupForm from './auth/signup/Signup'
-import NavBar from './components/layouts/navbar/navbar';
 import './App.css';
+import { getCurrentUser } from './components/utils/APIUtils';
+import PrivateRoute from './components/utils/PrivateRoute';
 
 class App extends Component {
 
@@ -26,6 +25,18 @@ class App extends Component {
     this.setState({
       loading: true
     });
+    getCurrentUser()
+    .then(response => {
+      this.setState({
+        currentUser: response,
+        authenticated: true,
+        loading: false
+      });
+    }).catch(error => {
+      this.setState({
+        loading: false
+      });
+    });
   }
 
   handleLogout() {
@@ -42,15 +53,15 @@ class App extends Component {
 
   render() {
     return (
-        <div>
-          <Route exact path="/" render={(props) => <Login />}>
+      <div>
+          <Route exact path="/" >
             <Redirect to="/home" />
           </Route>
           <Switch>
-            <Route exact path="/home" component={Easy}></Route>
-          <Route path="/basicauth" exact component={LoginComponent} />
+            <PrivateRoute path="/home" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
+              handleLogout={this.handleLogout} component={Easy}></PrivateRoute>
             <Route path="/login"
-              render={(props) => <LoginForm authenticated={this.state.authenticated} {...props} />}></Route>
+              render={(props) => <Login authenticated={this.state.authenticated} {...props} />}></Route>
             <Route path="/signup"
               render={(props) => <SignupForm authenticated={this.state.authenticated} {...props} />}></Route>
           </Switch>

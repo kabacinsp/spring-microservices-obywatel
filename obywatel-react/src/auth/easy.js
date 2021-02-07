@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'react-bootstrap';
 import logo from './../logo.svg';
 import styles from './easy.module.scss'
-import { easy } from '../components/utils/APIUtils.js';
-import Page from '../components/layouts/default/Page'
 
 class EasyForm extends Component {
 
@@ -23,7 +20,6 @@ class EasyForm extends Component {
 
    render() {
        return (
-         <Page>
            <div className="App">
                <header className="App-header">
                    <img src={logo} className="App-logo" alt="logo"/>
@@ -33,9 +29,8 @@ class EasyForm extends Component {
                    To get started, edit <code>src/App.js</code> and save to reload.
                </p>
            </div>
-          </Page>
        );
    }
-  }
+}
 
-  export default EasyForm
+export default EasyForm

@@ -5,7 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.kabacinsp.obywatel.config.ConfProperties;
+import pl.kabacinsp.obywatel.config.ConfigProperties;
 import pl.kabacinsp.obywatel.exception.BadRequestException;
 import pl.kabacinsp.obywatel.security.TokenProvider;
 import pl.kabacinsp.obywatel.util.CookieUtils;
@@ -24,16 +24,16 @@ import static pl.kabacinsp.obywatel.security.oauth.AuthorizationOAuth2Request.RE
 public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private TokenProvider tokenProvider;
-    private ConfProperties confProperties;
+    private ConfigProperties configProperties;
     private AuthorizationOAuth2Request authorizationOAuth2Request;
 
     @Autowired
     AuthenticationSuccessHandler(
             TokenProvider tokenProvider,
-            ConfProperties confProperties,
+            ConfigProperties configProperties,
             AuthorizationOAuth2Request authorizationOAuth2Request) {
         this.tokenProvider = tokenProvider;
-        this.confProperties = confProperties;
+        this.configProperties = configProperties;
         this.authorizationOAuth2Request = authorizationOAuth2Request;
     }
 
@@ -82,7 +82,7 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
     private boolean isAuthorizedRedirectUri(String uri) {
         URI clientRedirectUri = URI.create(uri);
 
-        return confProperties.getOauth2().getAuthorizedRedirectUris().stream()
+        return configProperties.getOauth2().getAuthorizedRedirectUris().stream()
                 .anyMatch(
                         authorizedRedirectUri -> {
                             // Only validate host and port. Let the clients use different paths if they want to
