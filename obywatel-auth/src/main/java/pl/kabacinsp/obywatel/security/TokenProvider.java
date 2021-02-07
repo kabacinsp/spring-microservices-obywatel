@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
-import pl.kabacinsp.obywatel.config.ConfProperties;
+import pl.kabacinsp.obywatel.config.ConfigProperties;
 
 import java.util.Date;
 
@@ -13,30 +13,30 @@ import java.util.Date;
 public class TokenProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
-    private ConfProperties confProperties;
+    private ConfigProperties configProperties;
 
-    public TokenProvider(ConfProperties confProperties) {
-        this.confProperties = confProperties;
+    public TokenProvider(ConfigProperties configProperties) {
+        this.configProperties = configProperties;
     }
 
     public String createToken(Authentication authentication) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + confProperties.getAuth().getExpirationToken());
+        Date expiryDate = new Date(now.getTime() + configProperties.getAuth().getExpirationToken());
 
         return Jwts.builder()
                 .setSubject(Long.toString(userPrincipal.getId()))
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
-                .signWith(SignatureAlgorithm.HS512, confProperties.getAuth().getSecretToken())
+                .signWith(SignatureAlgorithm.HS512, configProperties.getAuth().getSecretToken())
                 .compact();
     }
 
     public Long getUserIdFromToken(String token) {
         Claims claims =
                 Jwts.parser()
-                        .setSigningKey(confProperties.getAuth().getSecretToken())
+                        .setSigningKey(configProperties.getAuth().getSecretToken())
                         .parseClaimsJws(token)
                         .getBody();
 
@@ -46,7 +46,7 @@ public class TokenProvider {
     public boolean validateToken(String authToken) {
         try {
             Jwts.parser()
-                    .setSigningKey(confProperties.getAuth().getSecretToken())
+                    .setSigningKey(configProperties.getAuth().getSecretToken())
                     .parseClaimsJws(authToken);
             return true;
         } catch (SignatureException ex) {
